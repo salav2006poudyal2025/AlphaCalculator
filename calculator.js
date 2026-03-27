@@ -5,6 +5,7 @@
 class Calculator {
   constructor() {
     this.result = 0;
+    this.operationHistory = [];
   }
 
   /**
@@ -15,6 +16,12 @@ class Calculator {
    */
   add(a, b) {
     this.result = a + b;
+    this.operationHistory.push({
+      operation: 'add',
+      operands: [a, b],
+      result: this.result,
+      timestamp: new Date()
+    });
     return this.result;
   }
 
@@ -26,15 +33,29 @@ class Calculator {
    */
   subtract(a, b) {
     this.result = a - b;
+    this.operationHistory.push({
+      operation: 'subtract',
+      operands: [a, b],
+      result: this.result,
+      timestamp: new Date()
+    });
     return this.result;
   }
 
   /**
-   * Get the last result
-   * @returns {number} The last calculated result
+   * Get operation history
+   * @returns {Array} Array of all operations performed
    */
-  getResult() {
-    return this.result;
+  getHistory() {
+    return this.operationHistory;
+  }
+
+  /**
+   * Clear history and reset result
+   */
+  clear() {
+    this.result = 0;
+    this.operationHistory = [];
   }
 }
 
