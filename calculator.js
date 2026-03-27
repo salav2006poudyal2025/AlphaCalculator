@@ -1,5 +1,16 @@
 /**
- * Calculator - Addition Logic
+ * Calculator - Dynamic Calculation for Addition and Subtraction
+ * 
+ * A simple calculator that performs addition and subtraction operations
+ * with dynamic calculation capabilities. Tracks operation history for
+ * auditing and debugging purposes.
+ * 
+ * @example
+ * const calc = new Calculator();
+ * calc.add(10, 5);           // Returns 15
+ * calc.subtract(20, 8);      // Returns 12
+ * calc.getResult();          // Returns 12
+ * calc.getHistory();         // Returns array of operations
  */
 
 class Calculator {
@@ -43,6 +54,14 @@ class Calculator {
   }
 
   /**
+   * Get the last result
+   * @returns {number} The last calculated result
+   */
+  getResult() {
+    return this.result;
+  }
+
+  /**
    * Get operation history
    * @returns {Array} Array of all operations performed
    */
@@ -56,6 +75,22 @@ class Calculator {
   clear() {
     this.result = 0;
     this.operationHistory = [];
+  }
+
+  /**
+   * Print operation history to console
+   */
+  printHistory() {
+    console.log('=== Calculator Operation History ===');
+    if (this.operationHistory.length === 0) {
+      console.log('No operations performed yet');
+      return;
+    }
+    this.operationHistory.forEach((record, index) => {
+      const date = record.timestamp.toLocaleTimeString();
+      console.log(`${index + 1}. [${date}] ${record.operation}(${record.operands[0]}, ${record.operands[1]}) = ${record.result}`);
+    });
+    console.log('=====================================');
   }
 }
 
