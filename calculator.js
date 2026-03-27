@@ -19,6 +19,17 @@ class Calculator {
   }
 
   /**
+   * Subtract two numbers
+   * @param {number} a - First number
+   * @param {number} b - Second number (to be subtracted)
+   * @returns {number} Difference of a and b
+   */
+  subtract(a, b) {
+    this.result = a - b;
+    return this.result;
+  }
+
+  /**
    * Get the last result
    * @returns {number} The last calculated result
    */
