@@ -25,6 +25,11 @@ class Calculator {
    * @param {number} b - Second number
    * @returns {number} Sum of a and b
    * @throws {Error} If operands are not valid numbers
+   * 
+   * @example
+   * const calc = new Calculator();
+   * calc.add(10, 5);  // Returns 15
+   * calc.add(20, -5); // Returns 15
    */
   add(a, b) {
     this._validateOperands(a, b);
@@ -44,6 +49,11 @@ class Calculator {
    * @param {number} b - Second number (to be subtracted)
    * @returns {number} Difference of a and b
    * @throws {Error} If operands are not valid numbers
+   * 
+   * @example
+   * const calc = new Calculator();
+   * calc.subtract(20, 8);   // Returns 12
+   * calc.subtract(10, 15);  // Returns -5
    */
   subtract(a, b) {
     this._validateOperands(a, b);
