@@ -24,8 +24,10 @@ class Calculator {
    * @param {number} a - First number
    * @param {number} b - Second number
    * @returns {number} Sum of a and b
+   * @throws {Error} If operands are not valid numbers
    */
   add(a, b) {
+    this._validateOperands(a, b);
     this.result = a + b;
     this.operationHistory.push({
       operation: 'add',
@@ -41,8 +43,10 @@ class Calculator {
    * @param {number} a - First number
    * @param {number} b - Second number (to be subtracted)
    * @returns {number} Difference of a and b
+   * @throws {Error} If operands are not valid numbers
    */
   subtract(a, b) {
+    this._validateOperands(a, b);
     this.result = a - b;
     this.operationHistory.push({
       operation: 'subtract',
@@ -51,6 +55,22 @@ class Calculator {
       timestamp: new Date()
     });
     return this.result;
+  }
+
+  /**
+   * Validate that operands are valid numbers
+   * @private
+   * @param {*} a - First operand
+   * @param {*} b - Second operand
+   * @throws {Error} If operands are not valid numbers
+   */
+  _validateOperands(a, b) {
+    if (typeof a !== 'number' || isNaN(a) || !isFinite(a)) {
+      throw new Error(`Invalid operand: ${a} is not a valid number`);
+    }
+    if (typeof b !== 'number' || isNaN(b) || !isFinite(b)) {
+      throw new Error(`Invalid operand: ${b} is not a valid number`);
+    }
   }
 
   /**
